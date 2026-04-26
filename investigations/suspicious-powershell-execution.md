@@ -18,35 +18,37 @@ A suspicious PowerShell command was executed using encoded parameters. This beha
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -EncodedCommand <encoded_string>
 ```
-Relevant indicators:
+**Relevant indicators:**
 
-Process: powershell.exe
-Parent process: cmd.exe
-Command line contains: -EncodedCommand
-Network connection observed: Yes / No
-File created: Yes / No
-4. MITRE ATT&CK Mapping
+- Process: powershell.exe
+- Parent process: cmd.exe
+- Command line contains: -EncodedCommand
+- Network connection observed: Yes / No
+- File created: Yes / No
+## 4. MITRE ATT&CK Mapping
 Tactic	Technique	ID
 Execution	Command and Scripting Interpreter: PowerShell	T1059.001
 Defense Evasion	Obfuscated Files or Information	T1027
-5. Analysis
+## 5. Analysis
 
 The use of -EncodedCommand can be legitimate in administrative tasks, but it is also commonly used by attackers to hide malicious PowerShell commands. The investigation should validate the user context, parent process, destination IPs, script content and any related process execution.
 
-6. Investigation Questions
+## 6. Investigation Questions
 Was the command executed by an expected user?
 What was the parent process?
 Was the encoded command decoded and reviewed?
 Did the host connect to suspicious external infrastructure?
 Were additional tools downloaded or executed?
 Are there related alerts from the same host or user?
-7. Recommended Actions
+
+## 7. Recommended Actions
 Decode and analyze the PowerShell command.
 Check related process tree.
 Review network connections.
 Validate user activity.
 Isolate host if malicious behavior is confirmed.
 Create or tune detection logic for encoded PowerShell execution.
-8. Conclusion
+
+## 8. Conclusion
 
 Based on the evidence, this alert is classified as: True Positive / False Positive / Benign True Positive / Needs Further Investigation.
